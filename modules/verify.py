@@ -77,6 +77,7 @@ class Verify(commands.Cog):
 If you need another captcha, issue the command `.new_captcha`")
         await self.send_captcha(author, ctx)
 
+    @commands.command()
     async def new_captcha(self, ctx):
         author = str(ctx.message.author)
         if author in to_be_verified.keys():
