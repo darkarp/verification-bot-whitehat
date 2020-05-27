@@ -2,8 +2,12 @@ import discord
 from discord.ext import commands
 from os import listdir, environ
 from os.path import isfile, join
+try:
+    TOKEN = environ['TOKEN']
+except Exception as e:
+    print(e)
+    TOKEN = open("token.txt", "r").readline()
 
-TOKEN = environ['TOKEN']
 invite_link = "https://discord.com/api/oauth2/authorize?client_id=517177680375054336&permissions=8&scope=bot"
 client = commands.Bot(command_prefix=".")
 
@@ -46,6 +50,25 @@ async def unload(ctx, extension):
         await ctx.send(f"Unloaded {extension} successfully")
     except commands.ExtensionNotLoaded:
         await ctx.send(f"Module {extension} already unloaded or doesn't exist")
+
+
+@client.command()
+async def reload(ctx, extension):
+    """reloads module
+
+    Arguments:
+        extension {str} -- module to be reloaded
+    """
+    try:
+        client.unload_extension(f"{cog_folder}.{extension}")
+        client.load_extension(f"{cog_folder}.{extension}")
+        await ctx.send(f"Reloaded {extension} successfully")
+    except commands.ExtensionNotLoaded:
+        await ctx.send(f"Module {extension} already unloaded or doesn't exist")
+    except commands.ExtensionAlreadyLoaded:
+        await ctx.send(f"Module {extension} already loaded")
+    except commands.ExtensionNotFound:
+        await ctx.send(f"Module {extension} couldn't be found")
 
 
 @client.command()
