@@ -61,6 +61,7 @@ class Verify(commands.Cog):
         if author in to_be_verified.keys():
             text_input = message.content
             if text_input.lower() == to_be_verified[author]:
+                del to_be_verified[author]
                 await message.channel.send(f"{author} verified")
             else:
                 await message.channel.send("Not verified. Captcha Failed!")
