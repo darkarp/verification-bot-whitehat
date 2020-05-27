@@ -28,7 +28,7 @@ def new_captcha(text, username):
     im_client = imgur_uploader.ImgurClient(client_id, client_secret)
     image = ImageCaptcha(fonts=['fonts/font1.ttf'])
     data = image.generate(text)
-    captcha_file = "{text}.png"
+    captcha_file = f"{text}.png"
     image.write(text, captcha_file)
     captcha_link = im_client.upload_from_path(f"{captcha_file}")["link"]
     embed = discord.Embed(colour=discord.Colour(
