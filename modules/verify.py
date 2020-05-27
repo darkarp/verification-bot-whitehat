@@ -50,7 +50,7 @@ class Verify(commands.Cog):
     async def send_captcha(self, author, ctx):
         text = generate_text()
         embed = new_captcha(text, author)
-        to_be_verified[author] = text
+        to_be_verified[author] = text.lower()
         await ctx.send(embed=embed)
 
     @commands.Cog.listener()
@@ -58,9 +58,9 @@ class Verify(commands.Cog):
         if message.content.startswith("."):
             return 0
         author = str(message.author)
-        if author in to_be_verified:
+        if author in to_be_verified.keys():
             text_input = message.content
-            if text_input == to_be_verified[author]:
+            if text_input.lower() == to_be_verified[author]:
                 await message.channel.send(f"{author} verified")
             else:
                 await message.channel.send("Not verified. Captcha Failed!")
@@ -71,7 +71,7 @@ class Verify(commands.Cog):
         author = str(ctx.message.author)
         if author not in to_be_verified.keys():
             await ctx.send("Generating your captcha...")
-            to_be_verified[author] = text
+            to_be_verified[author] = text.lower()
         else:
             return await ctx.send("Please Complete your current verification.\n\
 If you need another captcha, issue the command `.new_captcha`")
