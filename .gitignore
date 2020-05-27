@@ -4,3 +4,4 @@ __pycache__/
 .vscode/
 token.txt
 .DS_Store
+*.png
