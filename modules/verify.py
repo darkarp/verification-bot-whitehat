@@ -36,7 +36,7 @@ def new_captcha(text, username):
     embed.set_author(
         name=f"Captcha Verification for {username}",
         icon_url="https://cdn.discordapp.com/avatars/\
-            517177680375054336/730098542337d1c0e38a893d48a53917.webp?size=256")
+517177680375054336/730098542337d1c0e38a893d48a53917.webp?size=256")
     embed.add_field(name="Please write the characters you see",
                     value="It is NOT case-sensitive")
     return embed
