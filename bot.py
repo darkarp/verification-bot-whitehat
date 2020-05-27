@@ -1,12 +1,10 @@
 import discord
 from discord.ext import commands
-from os import listdir
+from os import listdir, environ
 from os.path import isfile, join
 from boto.s3.connection import S3Connection
-s3 = S3Connection(os.environ['TOKEN'])
-print(s3)
+TOKEN = S3Connection(environ['TOKEN'])
 invite_link = "https://discord.com/api/oauth2/authorize?client_id=517177680375054336&permissions=8&scope=bot"
-TOKEN = "NTE3MTc3NjgwMzc1MDU0MzM2.Xs4SsA.7aEuq5q37YyNA6yLEDo1NKtC33E"
 client = commands.Bot(command_prefix=".")
 
 # Initialize modules
