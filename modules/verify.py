@@ -1,5 +1,5 @@
-import os
-import time
+# import os
+# import time
 import random
 import discord
 import imgur_uploader
@@ -18,16 +18,14 @@ to_be_verified = {}
 
 
 def generate_text(N=5):
-    print(digits)
     digit_list = digits.replace("01", "")
-    print(digit_list)
     return ''.join(random.choices(ascii_uppercase + digit_list, k=N))
 
 
 def new_captcha(text, username):
     im_client = imgur_uploader.ImgurClient(client_id, client_secret)
     image = ImageCaptcha(fonts=['fonts/font1.ttf'])
-    data = image.generate(text)
+    image.generate(text)
     captcha_file = f"{text}.png"
     image.write(text, captcha_file)
     captcha_link = im_client.upload_from_path(f"{captcha_file}")["link"]
@@ -35,7 +33,9 @@ def new_captcha(text, username):
         0x6b75aa), url="https://discordapp.com")
     embed.set_image(url=f"{captcha_link}")
     embed.set_author(
-        name=f"Captcha Verification for {username}", icon_url="https://cdn.discordapp.com/avatars/517177680375054336/730098542337d1c0e38a893d48a53917.webp?size=256")
+        name=f"Captcha Verification for {username}",
+        icon_url="https://cdn.discordapp.com/avatars/\
+            517177680375054336/730098542337d1c0e38a893d48a53917.webp?size=256")
     embed.add_field(name="Please write the characters you see",
                     value="It is NOT case-sensitive")
     return embed
