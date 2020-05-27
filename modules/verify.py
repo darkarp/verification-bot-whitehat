@@ -29,7 +29,6 @@ def new_captcha(text, username):
     captcha_file = f"{text}.png"
     image.write(text, captcha_file)
     captcha_link = im_client.upload_from_path(f"{captcha_file}")["link"]
-    # print(captcha_link)
     embed = discord.Embed(colour=discord.Colour(
         0x6b75aa), url="https://discordapp.com")
     embed.set_image(url=f"{captcha_link}")
