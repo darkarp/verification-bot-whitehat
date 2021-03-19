@@ -13,7 +13,7 @@ imgur-uploader==0.3.0
 imgurpython==1.1.7
 mccabe==0.6.1
 multidict==4.7.6
-Pillow==7.1.2
+Pillow==8.1.1
 pycodestyle==2.6.0
 pyflakes==2.2.0
 pyperclip==1.8.0
